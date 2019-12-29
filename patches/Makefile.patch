@@ -1,0 +1,26 @@
+diff --git a/Makefile b/Makefile
+--- a/Makefile
++++ b/Makefile
+@@ -13,13 +13,16 @@
+ .PHONY: coq clean doc html templates install cpdt.tgz pdf
+ 
+ coq: Makefile.coq
+-	$(MAKE) -f Makefile.coq
++	$(MAKE) -f Makefile.coq COQLIB=$(COQLIB) install
+ 
+-Makefile.coq: Makefile $(VS)
+-	coq_makefile $(VS) \
+-		COQC = "coqc -R src Cpdt" \
+-		COQDEP = "coqdep -R src Cpdt" \
+-		-o Makefile.coq
++Makefile.coq: _CoqProject #Makefile $(VS)
++	coq_makefile -f $< -o $@
++	# coq_makefile $(VS) \
++	# 	COQC = "coqc -R src Cpdt" \
++	# 	COQDEP = "coqdep -R src Cpdt" \
++	# 	-o Makefile.coq
++
++
+ 
+ clean:: Makefile.coq
+ 	$(MAKE) -f Makefile.coq clean

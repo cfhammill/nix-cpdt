@@ -1,0 +1,27 @@
+diff --git a/_CoqProject b/_CoqProject
+--- a/_CoqProject
++++ b/_CoqProject
+@@ -1,1 +1,23 @@
+ -R src Cpdt
++src/Coinductive.v
++src/Conclusion.v
++src/CpdtTactics.v
++src/DataStruct.v
++src/DepList.v
++src/Equality.v
++src/Exercises.v
++src/GeneralRec.v
++src/Generic.v
++src/InductiveTypes.v
++src/Intro.v
++src/Large.v
++src/LogicProg.v
++src/Match.v
++src/MoreDep.v
++src/MoreSpecif.v
++src/Predicates.v
++src/ProgLang.v
++src/Reflection.v
++src/StackMachine.v
++src/Subset.v
++src/Universes.v
