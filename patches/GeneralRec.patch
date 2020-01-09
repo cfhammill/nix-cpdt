@@ -1,0 +1,12 @@
+diff --git a/src/GeneralRec.v b/src/GeneralRec.v
+--- a/src/GeneralRec.v
++++ b/src/GeneralRec.v
+@@ -887,7 +887,7 @@
+ 
+ (** Have we finally reached the ideal solution for encoding general recursive definitions, with minimal hassle in syntax and proof obligations?  Unfortunately, we have not, as [comp] has a serious expressivity weakness.  Consider the following definition of a curried addition function: *)
+ 
+-Definition curriedAdd (n : nat) := Ret (fun m : nat => Ret (n + m)).
++(** Definition curriedAdd (n : nat) := Ret (fun m : nat => Ret (n + m)). **)
+ 
+ (** This definition works fine, but we run into trouble when we try to apply it in a trivial way.
+ [[

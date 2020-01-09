@@ -1,0 +1,55 @@
+diff --git a/src/DataStruct.v b/src/DataStruct.v
+--- a/src/DataStruct.v
++++ b/src/DataStruct.v
+@@ -251,30 +251,30 @@
+ 
+ (** By putting the parameters [A] and [B] in [Type], we enable fancier kinds of polymorphism than in mainstream functional languages.  For instance, one use of [hlist] is for the simple heterogeneous lists that we referred to earlier. *)
+ 
+-Definition someTypes : list Set := nat :: bool :: nil.
++Definition someTypes : list Type := (nat : Type) :: (bool : Type) :: nil.
+ 
+ (* begin thide *)
+ 
+-Example someValues : hlist (fun T : Set => T) someTypes :=
++Example someValues : hlist (fun T : Type => T) someTypes :=
+   HCons 5 (HCons true HNil).
+ 
+ Eval simpl in hget someValues HFirst.
+ (** %\vspace{-.15in}% [[
+      = 5
+-     : (fun T : Set => T) nat
++     : (fun T : Type => T) nat
+ ]]
+ *)
+ 
+ Eval simpl in hget someValues (HNext HFirst).
+ (** %\vspace{-.15in}% [[
+      = true
+-     : (fun T : Set => T) bool
++     : (fun T : Type => T) bool
+ ]]
+ *)
+ 
+ (** We can also build indexed lists of pairs in this way. *)
+ 
+-Example somePairs : hlist (fun T : Set => T * T)%type someTypes :=
++Example somePairs : hlist (fun T : Type => T * T)%type someTypes :=
+   HCons (1, 2) (HCons (true, false) HNil).
+ 
+ (** There are many other useful applications of heterogeneous lists, based on different choices of the first argument to [hlist]. *)
+@@ -288,13 +288,13 @@
+ 
+    We start with an algebraic datatype for types. *)
+ 
+-Inductive type : Set :=
++Inductive type : Type :=
+ | Unit : type
+ | Arrow : type -> type -> type.
+ 
+ (** Now we can define a type family for expressions.  An [exp ts t] will stand for an expression that has type [t] and whose free variables have types in the list [ts].  We effectively use the de Bruijn index variable representation%~\cite{DeBruijn}%.  Variables are represented as [member] values; that is, a variable is more or less a constructive proof that a particular type is found in the type environment. *)
+ 
+-Inductive exp : list type -> type -> Set :=
++Inductive exp : list type -> type -> Type :=
+ | Const : forall ts, exp ts Unit
+ (* begin thide *)
+ | Var : forall ts t, member t ts -> exp ts t

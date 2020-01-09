@@ -6,9 +6,11 @@ let cpdt = import ./default.nix; in
 with pkgs;
 mkShell {
   buildInputs = [ git
-                  coq
+                  coq_8_10
                   (emacsWithPackages (p: with p; [ proofgeneral ]))
-                  (with pkgs.coqPackages; [ssreflect equations ])
+                  (with pkgs.coqPackages_8_10; [ssreflect
+                                           equations
+                                           coq-extensible-records ])
                   cpdt  
                 ];
 }       

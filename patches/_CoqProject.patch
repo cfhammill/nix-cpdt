@@ -1,7 +1,7 @@
 diff --git a/_CoqProject b/_CoqProject
 --- a/_CoqProject
 +++ b/_CoqProject
-@@ -1,1 +1,23 @@
+@@ -1,1 +1,22 @@
  -R src Cpdt
 +src/Coinductive.v
 +src/Conclusion.v
@@ -21,7 +21,6 @@ diff --git a/_CoqProject b/_CoqProject
 +src/MoreSpecif.v
 +src/Predicates.v
 +src/ProgLang.v
-+src/Reflection.v
 +src/StackMachine.v
 +src/Subset.v
 +src/Universes.v
